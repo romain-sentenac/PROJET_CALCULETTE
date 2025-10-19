@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="calculator-resizable" id="calculatorResizable" aria-label="Resizable calculator">
+        <div class="calculator-container" id="calculatorContainer">
+        <!-- Header circles -->
+        <div class="header-circles">
+            <div class="circle red"></div>
+            <div class="circle yellow"></div>
+            <div class="circle green"></div>
+        </div>
+        
+        <!-- Display -->
+        <div class="display">
+            <p id="display" class="display-text">0</p>
+        </div>
+        
+        <!-- Buttons Grid -->
+        <div class="buttons-grid">
+            <!-- Row 1 -->
+            <button class="calc-button light button-normal" onclick="clearAll()">
+                <div class="button-circle light">
+                    <p class="button-text light">AC</p>
+                </div>
+            </button>
+            
+            <button class="calc-button light button-normal" onclick="toggleSign()">
+                <div class="button-circle light">
+                    <p class="button-text light">+/-</p>
+                </div>
+            </button>
+            
+            <button class="calc-button light button-normal" onclick="percentage()">
+                <div class="button-circle light">
+                    <p class="button-text light">%</p>
+                </div>
+            </button>
+            
+            <button class="calc-button dark button-normal" onclick="setOperation('/')">
+                <div class="button-circle dark">
+                    <p class="button-text dark">/</p>
+                </div>
+            </button>
+            
+            <!-- Row 2 -->
+            <button class="calc-button light button-normal" onclick="inputNumber('7')">
+                <div class="button-circle light">
+                    <p class="button-text light">7</p>
+                </div>
+            </button>
+            
+            <button class="calc-button light button-normal" onclick="inputNumber('8')">
+                <div class="button-circle light">
+                    <p class="button-text light">8</p>
+                </div>
+            </button>
+            
+            <button class="calc-button light button-normal" onclick="inputNumber('9')">
+                <div class="button-circle light">
+                    <p class="button-text light">9</p>
+                </div>
+            </button>
+            
+            <button class="calc-button dark button-normal" onclick="setOperation('*')">
+                <div class="button-circle dark">
+                    <p class="button-text dark">×</p>
+                </div>
+            </button>
+            
+            <!-- Row 3 -->
+            <button class="calc-button light button-normal" onclick="inputNumber('4')">
+                <div class="button-circle light">
+                    <p class="button-text light">4</p>
+                </div>
+            </button>
+            
+            <button class="calc-button light button-normal" onclick="inputNumber('5')">
+                <div class="button-circle light">
+                    <p class="button-text light">5</p>
+                </div>
+            </button>
+            
+            <button class="calc-button light button-normal" onclick="inputNumber('6')">
+                <div class="button-circle light">
+                    <p class="button-text light">6</p>
+                </div>
+            </button>
+            
+            <button class="calc-button dark button-normal" onclick="setOperation('-')">
+                <div class="button-circle dark">
+                    <p class="button-text dark">-</p>
+                </div>
+            </button>
+            
+            <!-- Row 4 -->
+            <button class="calc-button light button-normal" onclick="inputNumber('1')">
+                <div class="button-circle light">
+                    <p class="button-text light">1</p>
+                </div>
+            </button>
+            
+            <button class="calc-button light button-normal" onclick="inputNumber('2')">
+                <div class="button-circle light">
+                    <p class="button-text light">2</p>
+                </div>
+            </button>
+            
+            <button class="calc-button light button-normal" onclick="inputNumber('3')">
+                <div class="button-circle light">
+                    <p class="button-text light">3</p>
+                </div>
+            </button>
+            
+            <button class="calc-button dark button-normal" onclick="setOperation('+')">
+                <div class="button-circle dark">
+                    <p class="button-text dark">+</p>
+                </div>
+            </button>
+            
+            <!-- Row 5 -->
+            <button class="calc-button light button-normal zero" onclick="inputNumber('0')">
+                <div class="button-circle light">
+                    <p class="button-text light">0</p>
+                </div>
+            </button>
+            
+            <button class="calc-button light button-normal" onclick="inputDecimal()">
+                <div class="button-circle light">
+                    <p class="button-text light">,</p>
+                </div>
+            </button>
+            
+            <button class="calc-button dark button-normal" onclick="calculate()">
+                <div class="button-circle dark">
+                    <p class="button-text dark">=</p>
+                </div>
+            </button>
+        </div>
+        </div>
+        <div class="resize-handle" id="resizeHandle" aria-hidden="true"></div>
+    </div>
+
+    <script src="script.js"></script>
+
+    <!-- Title & Logo block (fixed bottom-left) -->
+    <div class="title-logo-block" id="titleLogoBlock" role="contentinfo" aria-label="Calculator branding">
+        <div class="title-logo-text">
+            <p class="title-logo-title">Calculator</p>
+            <p class="title-logo-subtitle">FIGMA TO CURSOR EXPERIMENT</p>
+        </div>
+        <div class="title-logo-separator"></div>
+        <div class="title-logo-image">
+            <img src="https://www.figma.com/api/mcp/asset/2c4271e1-6df3-46df-8f9e-ea18f0645223" alt="Personal logo" />
+        </div>
+    </div>
+</body>
+</html>

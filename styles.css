@@ -1,0 +1,280 @@
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    background-color: var(--calculette_colors-color-fond-ecran);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+}
+
+/* CSS Variables from Figma */
+:root {
+    --calculette_colors-color-fond-ecran: #3a3a3a;
+    --calculette_colors-color-fond-sombre: #262626;
+    --calculette_colors-color-btn-sombre: #efebe6;
+    --calculette_colors-color-btn-clair: #cd7b5f;
+    --calculette_colors-color-text-clair: #ececec;
+    --calculette_colors-color-text-sombre: #707070;
+    --spacing-1: 9px;
+    --spacing-2: 18px;
+    --spacing-3: 27px;
+}
+
+/* Calculator container */
+.calculator-resizable {
+    position: relative;
+    /* Base size matches Figma */
+    width: 435px;
+    height: 663px;
+    min-width: 435px;
+    min-height: 663px;
+}
+
+.calculator-container {
+    background-color: var(--calculette_colors-color-fond-sombre);
+    border-radius: 20px;
+    padding: var(--spacing-3);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-2);
+    overflow: hidden; /* ensure children never spill outside rounded frame */
+}
+
+/* Header circles */
+.header-circles {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.circle {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+
+.circle.red { background-color: #ff5f57; }
+.circle.yellow { background-color: #ffbd2e; }
+.circle.green { background-color: #28ca42; }
+
+/* Display */
+.display {
+    text-align: right;
+}
+
+.display-text {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 60px;
+    color: var(--calculette_colors-color-text-clair);
+    letter-spacing: 3px;
+    line-height: 1;
+    font-weight: 100;
+}
+
+/* Buttons grid */
+.buttons-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    gap: 5px;
+    flex: 1;
+    min-height: 470px; /* match Figma base to preserve 27px bottom padding at default size */
+}
+
+/* Button styles */
+.calc-button {
+    border: none;
+    border-radius: 12px;
+    padding: var(--spacing-2);
+    min-height: 0; /* allow fluid resize */
+    min-width: 0;  /* allow fluid resize */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.1s ease;
+    position: relative;
+    /* NO shadows on the rounded squares */
+    box-shadow: none;
+}
+
+.calc-button.light {
+    background-color: var(--calculette_colors-color-btn-sombre);
+}
+
+.calc-button.dark {
+    background-color: var(--calculette_colors-color-btn-clair);
+}
+
+.calc-button.zero {
+    grid-column: span 2;
+}
+
+/* Button inner circle - PERFECT circles with shadows */
+.button-circle {
+    border-radius: 50%;
+    width: 64px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    transition: box-shadow 100ms ease-out;
+    /* Ensure perfect circle */
+    aspect-ratio: 1;
+}
+
+.button-circle.light {
+    background-color: var(--calculette_colors-color-btn-sombre);
+    /* Default: external shadow */
+    box-shadow: -3px -3px 5px 0px rgba(255,255,255,0.4), 3px 3px 5px 0px rgba(85,69,44,0.25);
+}
+
+.button-circle.dark {
+    background-color: var(--calculette_colors-color-btn-clair);
+    /* Default: external shadow */
+    box-shadow: -3px -3px 5px 0px rgba(255,255,255,0.4), 3px 3px 5px 0px rgba(85,69,44,0.25);
+}
+
+/* Pressed state: external shadow becomes inner shadow at OPPOSITE corners */
+.button-circle.pressed.light {
+    /* External light shadow (top-left) becomes inner light shadow (bottom-right) */
+    /* External dark shadow (bottom-right) becomes inner dark shadow (top-left) */
+    box-shadow: inset -2px -2px 1px 0px rgba(85,69,44,0.25), inset 2px 2px 1px 0px rgba(255,255,255,0.4);
+}
+
+.button-circle.pressed.dark {
+    /* External light shadow (top-left) becomes inner light shadow (bottom-right) */
+    /* External dark shadow (bottom-right) becomes inner dark shadow (top-left) */
+    box-shadow: inset -2px -2px 1px 0px rgba(85,69,44,0.25), inset 2px 2px 1px 0px rgba(255,255,255,0.4);
+}
+
+/* Button text */
+.button-text {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 20px;
+    letter-spacing: 1px;
+    font-weight: 400;
+}
+
+.button-text.light {
+    color: var(--calculette_colors-color-text-sombre);
+}
+
+.button-text.dark {
+    color: var(--calculette_colors-color-text-clair);
+}
+
+/* Button states and animations - NO effects on rounded squares */
+.button-normal {
+    /* NO shadows on the rounded square buttons */
+    box-shadow: none;
+}
+
+.button-normal:hover {
+    /* NO hover effects on rounded squares */
+    transform: none;
+}
+
+.button-normal:active,
+.button-press {
+    /* NO press effects on rounded squares */
+    transform: none;
+    box-shadow: none;
+}
+
+/* Responsive design */
+@media (max-width: 480px) {
+    .calculator-resizable { width: 100%; height: auto; }
+    .calculator-container { padding: 20px; }
+    
+    .display-text {
+        font-size: 48px;
+    }
+    
+    .calc-button {
+        min-height: 70px;
+        min-width: 70px;
+    }
+    
+    .button-circle {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .button-text {
+        font-size: 18px;
+    }
+}
+
+/* Resize handle (bottom-right) */
+.resize-handle {
+    position: absolute;
+    right: 6px;
+    bottom: 6px;
+    width: 16px;
+    height: 16px;
+    cursor: nwse-resize;
+    background: linear-gradient(135deg, transparent 0 40%, rgba(255,255,255,0.35) 40% 60%, transparent 60% 100%);
+    opacity: 0.6;
+}
+
+/* Title & Logo block styles (from Figma node 1209:431) */
+.title-logo-block {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-2);
+    padding: var(--spacing-3);
+    background-color: var(--calculette_colors-color-fond-sombre);
+    color: var(--calculette_colors-color-text-clair);
+}
+
+.title-logo-text {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-1);
+}
+
+.title-logo-title {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-weight: 100; /* Thin */
+    font-size: 35px;
+    line-height: 30px;
+    letter-spacing: 1.75px;
+}
+
+.title-logo-subtitle {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-weight: 500; /* Medium */
+    font-size: 9px;
+    line-height: normal;
+    letter-spacing: 0.45px;
+}
+
+.title-logo-separator {
+    width: 1px;
+    height: 56px;
+    background-color: var(--calculette_colors-color-text-sombre);
+}
+
+.title-logo-image {
+    width: 58px;
+    height: 56px;
+}
+
+.title-logo-image img {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
